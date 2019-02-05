@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Root creates an snapshot of the model 1`] = `
+Object {
+  "loading": true,
+}
+`;
+
+exports[`Root creates an snapshot of the model 2`] = `
+Array [
+  Object {
+    "loading": true,
+  },
+]
+`;
