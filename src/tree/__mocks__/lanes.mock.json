@@ -1,0 +1,19 @@
+[
+    {
+        "id": "lane1",
+        "title": "Planned Tasks",
+        "label": "2/2",
+        "cards": [
+            "card1",
+            "card2"
+        ]
+    }, {
+        "id": "lane2",
+        "title": "Completed",
+        "label": "0/0",
+        "cards": [
+            "card2",
+            "card3"
+        ]
+    }
+]

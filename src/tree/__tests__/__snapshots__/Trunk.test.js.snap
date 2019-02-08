@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Trunk receives a type and creates a map entry for that type 1`] = `
+Array [
+  Object {
+    "belts": Object {
+      "Test": Array [
+        Object {
+          "alive": false,
+        },
+      ],
+    },
+  },
+]
+`;

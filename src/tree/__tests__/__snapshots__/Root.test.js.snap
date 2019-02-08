@@ -1,15 +1,67 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Root creates an snapshot of the model 1`] = `
+exports[`Root can toggle .loading to true and false 1`] = `
 Object {
+  "cards": Array [],
+  "lanes": Array [],
   "loading": true,
 }
 `;
 
-exports[`Root creates an snapshot of the model 2`] = `
+exports[`Root can toggle .loading to true and false 2`] = `
 Array [
   Object {
+    "cards": Array [],
+    "lanes": Array [],
     "loading": true,
+  },
+]
+`;
+
+exports[`Root receives an array of lanes with attached cards, and adds both cards and lanes to the board 1`] = `
+Array [
+  Object {
+    "cards": Array [
+      Object {
+        "description": "Can AI make memes",
+        "id": "Card1",
+        "label": "30 mins",
+        "title": "Write Blog",
+      },
+      Object {
+        "description": "Transfer via NEFT",
+        "id": "Card2",
+        "label": "5 mins",
+        "title": "Pay Rent",
+      },
+      Object {
+        "description": "Nacho Friday",
+        "id": "Card3",
+        "label": "15 mins",
+        "title": "Purchase Fifty Pounds of Grade A Pork Butt",
+      },
+    ],
+    "lanes": Array [
+      Object {
+        "cards": Array [
+          "card1",
+          "card2",
+        ],
+        "id": "lane1",
+        "label": "2/2",
+        "title": "Planned Tasks",
+      },
+      Object {
+        "cards": Array [
+          "card2",
+          "card3",
+        ],
+        "id": "lane2",
+        "label": "0/0",
+        "title": "Completed",
+      },
+    ],
+    "loading": false,
   },
 ]
 `;
