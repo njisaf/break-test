@@ -4,46 +4,43 @@ import {
     types
 } from 'mobx-state-tree';
 import Trunk from '../Trunk';
-
+import MapUtils from '../utils/MapUtils';
 
 describe('Trunk', () => {
-    let trunk;
     let states = [];
-    beforeAll(() => {
-        //Here we reset the state before each test, and empty the states array.
-        trunk = Trunk.create();
-        states = [];
+
+    const TestModel = types.compose(Trunk, MapUtils, types.model({
+        identity: types.string,
+        alive: true,
+    }).actions(self => ({
+        kill() {
+            self.alive = false;
+            self.failure('Test is alive?', self.alive);
+        }
+    })))
+
+    const testModel = TestModel.create({
+        identity: 'testOne'
+    });
+  
+    onSnapshot(testModel, snapshot => {
+        states.push(snapshot)
     })
 
 
-    it('receives a type and creates a map entry for that type', () => {
-        // const trunk = Trunk.create();
-        // const states = [];
-        onSnapshot(trunk, snapshot => {
-            states.push(snapshot)
-        })
-
-        const TestModel = types.model('Test', {
-            alive: true,
-        }).actions(self => ({
-            kill() {
-                self.alive = false;
-            }
-        }))
-        const testModel = TestModel.create();
+    it('testModel.alive can toggle to false', () => {
+        console.log('testModel', getSnapshot(testModel))
         expect(testModel.alive).toBe(true);
         testModel.kill();
+        expect(testModel.alive).toBe(false);
+    })
 
-        const testSnap = getSnapshot(testModel);
-        expect(testSnap.alive).toBe(false);
+    it('has the dead model added to the failures map on Trunk', () => {
+        expect(testModel.failures.size).toBe(1);
+        expect(testModel.failures.get('Test is alive?')).toBe(false);
+    })
 
-        expect(trunk.belts.size).toBe(0);
-        trunk.addBelt('Test', testSnap);
-        expect(trunk.belts.size).toBe(1);
-
-        const testOnBelt = trunk.belts.get('Test')[0];
-        expect(testOnBelt).toEqual(testSnap);
-
+    it('matches snapshot', () => {
         expect(states).toMatchSnapshot();
     })
 })

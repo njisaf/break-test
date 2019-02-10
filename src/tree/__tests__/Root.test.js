@@ -9,6 +9,7 @@ describe('Root', () => {
         const item = Root.create();
         const states = [];
         onSnapshot(item, snapshot => {
+            console.log('snapshot', snapshot)
             states.push(snapshot)
         })
         
@@ -29,10 +30,10 @@ describe('Root', () => {
             states.push(snapshot)
         })
 
-        expect(item.lanes.length).toBe(0);
+        expect(item.laneStore.size).toBe(0);
         item.initializeBoard(Cards, Lanes);
 
-        expect(item.lanes.length).toBeGreaterThan(0);
+        expect(item.laneStore.size).toBeGreaterThan(0);
 
         expect(states).toMatchSnapshot();
     })
