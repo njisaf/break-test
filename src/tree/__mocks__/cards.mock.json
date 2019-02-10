@@ -8,17 +8,11 @@
         "id": "Card2",
         "title": "Pay Rent",
         "description": "Transfer via NEFT",
-        "label": "5 mins",
-        "metadata": {
-            "sha": "be312a1"
-        }
+        "label": "5 mins"
     }, {
         "id": "Card3",
         "title": "Purchase Fifty Pounds of Grade A Pork Butt",
         "description": "Nacho Friday",
-        "label": "15 mins",
-        "metadata": {
-            "sha": "be3asd1a1"
-        }
+        "label": "15 mins"
     }
 ]

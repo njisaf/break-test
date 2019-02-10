@@ -9,7 +9,6 @@ describe('Root', () => {
         const item = Root.create();
         const states = [];
         onSnapshot(item, snapshot => {
-            console.log('snapshot', snapshot)
             states.push(snapshot)
         })
         

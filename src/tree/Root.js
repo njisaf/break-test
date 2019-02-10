@@ -1,7 +1,10 @@
-import { types } from 'mobx-state-tree';
+import {
+    types,
+    getSnapshot
+} from 'mobx-state-tree';
 
-import Trunk from './Trunk';
-import MapUtils from './utils/MapUtils';
+// import Trunk from './Trunk';
+// import MapUtils from './utils/MapUtils';
 
 import LaneStore from './LaneStore';
 import CardStore from './CardStore';
@@ -10,42 +13,45 @@ import CardStore from './CardStore';
 // const _cardStore = types.compose(Trunk, MapUtils, CardStore);
 
 const Root = types.model('Root', {
-    loading: false,
-    laneStore: types.compose('laneStore', Trunk, MapUtils, LaneStore),
-    cardStore: types.compose('cardStore', Trunk, MapUtils, CardStore),
-})
-.actions(self => {
-    return {
+        loading: false,
+        laneStore: types.optional(LaneStore, {}),
+        cardStore: types.optional(CardStore, {}),
+    })
+    .actions(self => {
+        return {
+            afterCreate() {
+                // console.log('Initializing Root', getSnapshot(self))
+            },
 
-        initializeBoard(cards, lanes) {
-            lanes.forEach((lane) => {
-                try {
-                    self.laneStore.set(lane.id, lane);
-                } catch (e) {
-                    self.laneStore.failure(e, lane);
-                }
-            })
+            initializeBoard(cards, lanes) {
+                lanes.forEach((lane) => {
+                    try {
+                        self.laneStore.set(lane.id, lane);
+                    } catch (e) {
+                        self.laneStore.failure(e, lane);
+                    }
+                })
 
-            cards.forEach((card) => {
-                try {
-                    self.cards.set(card.id, card);
-                } catch (e) {
-                    self.cardStore.failure(e, card);
-                }
-            })
-        },
+                cards.forEach((card) => {
+                    try {
+                        self.cardStore.set(card.id, card);
+                    } catch (e) {
+                        self.cardStore.failure(e, card);
+                    }
+                })
+            },
 
-        setLoading(boolean) {
-            self.loading = boolean;
-        },
-    }
-})
-.views(self => {
-    return {
-        get isLoading() {
-            return self.loading === true;
-        },
-    }
-})
+            setLoading(boolean) {
+                self.loading = boolean;
+            },
+        }
+    })
+    .views(self => {
+        return {
+            get isLoading() {
+                return self.loading === true;
+            },
+        }
+    })
 
 export default Root;

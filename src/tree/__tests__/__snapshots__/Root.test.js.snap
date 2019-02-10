@@ -2,8 +2,14 @@
 
 exports[`Root can toggle .loading to true and false 1`] = `
 Object {
-  "cards": Array [],
-  "lanes": Array [],
+  "cardStore": Object {
+    "failures": Object {},
+    "map": Object {},
+  },
+  "laneStore": Object {
+    "failures": Object {},
+    "map": Object {},
+  },
   "loading": true,
 }
 `;
@@ -11,8 +17,14 @@ Object {
 exports[`Root can toggle .loading to true and false 2`] = `
 Array [
   Object {
-    "cards": Array [],
-    "lanes": Array [],
+    "cardStore": Object {
+      "failures": Object {},
+      "map": Object {},
+    },
+    "laneStore": Object {
+      "failures": Object {},
+      "map": Object {},
+    },
     "loading": true,
   },
 ]
@@ -21,46 +33,52 @@ Array [
 exports[`Root receives an array of lanes with attached cards, and adds both cards and lanes to the board 1`] = `
 Array [
   Object {
-    "cards": Array [
-      Object {
-        "description": "Can AI make memes",
-        "id": "Card1",
-        "label": "30 mins",
-        "title": "Write Blog",
+    "cardStore": Object {
+      "failures": Object {},
+      "map": Object {
+        "Card1": Object {
+          "description": "Can AI make memes",
+          "id": "Card1",
+          "label": "30 mins",
+          "title": "Write Blog",
+        },
+        "Card2": Object {
+          "description": "Transfer via NEFT",
+          "id": "Card2",
+          "label": "5 mins",
+          "title": "Pay Rent",
+        },
+        "Card3": Object {
+          "description": "Nacho Friday",
+          "id": "Card3",
+          "label": "15 mins",
+          "title": "Purchase Fifty Pounds of Grade A Pork Butt",
+        },
       },
-      Object {
-        "description": "Transfer via NEFT",
-        "id": "Card2",
-        "label": "5 mins",
-        "title": "Pay Rent",
+    },
+    "laneStore": Object {
+      "failures": Object {},
+      "map": Object {
+        "lane1": Object {
+          "cards": Array [
+            "card1",
+            "card2",
+          ],
+          "id": "lane1",
+          "label": "2/2",
+          "title": "Planned Tasks",
+        },
+        "lane2": Object {
+          "cards": Array [
+            "card2",
+            "card3",
+          ],
+          "id": "lane2",
+          "label": "0/0",
+          "title": "Completed",
+        },
       },
-      Object {
-        "description": "Nacho Friday",
-        "id": "Card3",
-        "label": "15 mins",
-        "title": "Purchase Fifty Pounds of Grade A Pork Butt",
-      },
-    ],
-    "lanes": Array [
-      Object {
-        "cards": Array [
-          "card1",
-          "card2",
-        ],
-        "id": "lane1",
-        "label": "2/2",
-        "title": "Planned Tasks",
-      },
-      Object {
-        "cards": Array [
-          "card2",
-          "card3",
-        ],
-        "id": "lane2",
-        "label": "0/0",
-        "title": "Completed",
-      },
-    ],
+    },
     "loading": false,
   },
 ]

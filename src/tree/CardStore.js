@@ -2,10 +2,13 @@ import {
     types
 } from 'mobx-state-tree';
 
+import Trunk from './Trunk';
+import MapUtils from './utils/MapUtils';
+
 import Card from './Card';
 
 const CardStore = types.model('CardStore', {
-    map: types.optional(types.map(Card), {}),
+    map: types.map(Card),
 })
 
-export default CardStore;
+export default types.compose('cardStore', CardStore, Trunk, MapUtils);
