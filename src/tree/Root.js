@@ -1,23 +1,21 @@
 import {
     types,
-    getSnapshot
+    getSnapshot,
 } from 'mobx-state-tree';
 
-// import Trunk from './Trunk';
-// import MapUtils from './utils/MapUtils';
+import ErrorCollection from './ErrorCollection';
+import MapUtils from './utils/MapUtils';
 
 import LaneStore from './LaneStore';
 import CardStore from './CardStore';
 
-// const _laneStore = types.compose(Trunk, MapUtils, LaneStore);
-// const _cardStore = types.compose(Trunk, MapUtils, CardStore);
-
 const Root = types.model('Root', {
         loading: false,
-        laneStore: types.optional(LaneStore, {}),
-        cardStore: types.optional(CardStore, {}),
+        laneStore: types.optional(types.compose('laneStore', LaneStore, ErrorCollection, MapUtils), {}),
+        cardStore: types.optional(types.compose('cardStore', CardStore, ErrorCollection, MapUtils), {}),
     })
     .actions(self => {
+
         return {
             afterCreate() {
                 // console.log('Initializing Root', getSnapshot(self))

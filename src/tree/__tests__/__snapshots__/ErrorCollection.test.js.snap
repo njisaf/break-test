@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Trunk matches snapshot 1`] = `
+exports[`ErrorCollection matches snapshot 1`] = `
 Array [
   Object {
     "alive": false,
     "failures": Object {
-      "Test is alive?": false,
+      "testOne": false,
     },
     "identity": "testOne",
   },
